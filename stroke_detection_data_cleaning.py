@@ -45,6 +45,7 @@ ohe = OneHotEncoder(categories = 'auto')
 work_type_ohe = ohe.fit_transform(x[:,0:1]).toarray()
 #smoking status
 smoking_status_ohe = ohe.fit_transform(x[:,1:2]).toarray()
+
 x = x[:, 2:]
 x = np.column_stack((work_type_ohe, smoking_status_ohe, x))
 
