@@ -6,6 +6,7 @@ Created on Sun Feb  6 16:14:47 2022
 """
 
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
 
 fileName = 'healthcare-dataset-stroke-data.csv'
@@ -67,3 +68,5 @@ x = np.column_stack((x[:, :16], bmis_normed))
 #adding bias
 bias = np.ones((x.shape[0], 1))
 x = np.column_stack((bias, x))
+
+pd.DataFrame(np.column_stack((x,y))).to_csv("new_stroke_detection_data.csv", index=False, header=False)
