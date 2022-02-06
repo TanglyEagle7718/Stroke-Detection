@@ -7,7 +7,6 @@ Created on Sun Feb  6 16:14:47 2022
 
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
-from matplotlib import pyplot as plt
 
 fileName = 'healthcare-dataset-stroke-data.csv'
 print("fileName: ", fileName)
