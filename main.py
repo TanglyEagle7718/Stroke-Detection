@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Feb  6 17:17:22 2022
-
-@author: 857238
-"""
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from matplotlib import pyplot as plt
@@ -26,7 +20,6 @@ data = np.loadtxt(raw_data, usecols = (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,
 x = data[:, :18]
 y = data[:, 18]
 
-
 """
 Split data into training and test data
 """
@@ -37,11 +30,10 @@ x_train, x_test, y_train, y_test = model_selection.train_test_split(x
 Builds network
 """
 model = models.Sequential()
-model.add(layers.Dense(64, activation='relu', input_shape = (1,18) ))
-model.add(layers.Dense(44, activation='sigmoid'))
-model.add(layers.Dense(30, activation="tanh"))
-model.add(layers.Dense(1))
-
+model.add(layers.Dense(18, activation='relu', input_shape=(18,)))
+model.add(layers.Dense(9, activation='relu'))
+model.add(layers.Dense(1, activation='sigmoid'))
+###############################################################################
 
 """
 Configures model
@@ -62,13 +54,12 @@ partial_x_train = x_train[1500:]
 
 y_val = y_train[:1500]
 partial_y_train = y_train[1500:]
-#Ask Mr. Chapin bout above stuff, and why accuracy and loss are always constant
 
 """
 Trains data
 """
-history = model.fit(partial_x_train, partial_y_train, epochs=10, batch_size=1, validation_data=(x_val, y_val))
-
+history = model.fit(partial_x_train, partial_y_train, epochs=5, batch_size=1, validation_data=(x_val, y_val))
+###############################################################################
 
 """
 Plots results
@@ -115,8 +106,9 @@ ax1.legend()
 
 plt.show()
 
+
 """
 predict
 """
-
 testPrediction = model.predict(x_test)
+###############################################################################
